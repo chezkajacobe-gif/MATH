@@ -1,0 +1,2420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math Hub | Mathematics Reviewer</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f3fb;
+    --card: #ffffff;
+    --text: #29233d;
+    --muted: #746d87;
+    --border: #e5def2;
+    --primary: #7654d9;
+    --primary-dark: #5d3db5;
+    --soft: #eee9fc;
+    --header: #302052;
+    --success: #16804b;
+    --danger: #c0392b;
+}
+
+body.dark {
+    --bg: #15121f;
+    --card: #211c30;
+    --text: #f4efff;
+    --muted: #b8afcb;
+    --border: #403653;
+    --primary: #a78bfa;
+    --primary-dark: #8b6be8;
+    --soft: #302746;
+    --header: #211735;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #302052, #6543a5);
+    color: white;
+    padding: 28px 20px 34px;
+}
+
+.header-inner {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    background: #9b7de8;
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.logo p {
+    margin: 4px 0 0;
+    color: #d8cef3;
+    font-size: 12px;
+}
+
+.theme-btn {
+    border: 1px solid #ffffff55;
+    background: #ffffff18;
+    color: white;
+    border-radius: 20px;
+    padding: 9px 14px;
+    cursor: pointer;
+}
+
+.hero {
+    margin-top: 35px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #d4c6f4;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.15;
+    margin: 12px 0;
+}
+
+.hero p {
+    color: #ded5f4;
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.badge {
+    background: #ffffff20;
+    border: 1px solid #ffffff20;
+    padding: 8px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* MAIN */
+
+main {
+    max-width: 1050px;
+    margin: auto;
+    padding: 25px 20px 40px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 25px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    width: 100%;
+    min-width: 0;
+}
+
+.search-box input::placeholder {
+    color: var(--muted);
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 6px 0 0;
+}
+
+.topic-count {
+    background: var(--soft);
+    color: var(--primary-dark);
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 22px;
+    padding: 9px 15px;
+    font-size: 13px;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* LESSONS */
+
+.lesson {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.lesson.hidden {
+    display: none;
+}
+
+.lesson-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    padding: 17px;
+    text-align: left;
+}
+
+.lesson-header:hover {
+    background: var(--soft);
+}
+
+.lesson-number {
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: var(--soft);
+    color: var(--primary-dark);
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.lesson-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.lesson-name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.lesson-description {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.arrow {
+    font-size: 23px;
+    color: var(--muted);
+    transition: transform 0.2s;
+}
+
+.lesson.open .arrow {
+    transform: rotate(180deg);
+}
+
+.lesson-content {
+    display: none;
+    padding: 0 20px 22px;
+    border-top: 1px solid var(--border);
+}
+
+.lesson.open .lesson-content {
+    display: block;
+}
+
+.lesson-content h3 {
+    color: var(--primary-dark);
+    font-size: 19px;
+    margin: 22px 0 10px;
+}
+
+.lesson-content p {
+    line-height: 1.7;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.lesson-content ul {
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.formula {
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    margin: 12px 0;
+    font-size: 18px;
+    font-family: Georgia, serif;
+    overflow-wrap: anywhere;
+}
+
+.note {
+    background: var(--soft);
+    border-left: 4px solid var(--primary);
+    padding: 12px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 13px 0;
+}
+
+.example {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 10px 0;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* TABLE */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    font-size: 13px;
+}
+
+th,
+td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+th {
+    background: var(--soft);
+    font-weight: bold;
+}
+
+/* VENN DIAGRAM */
+
+.venn-wrapper {
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.venn-wrapper svg {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: auto;
+}
+
+/* QUIZ */
+
+.quiz-box {
+    margin-top: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.quiz-box h2 {
+    margin-top: 0;
+}
+
+.quiz-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.progress-track {
+    height: 8px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 18px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width 0.2s;
+}
+
+.quiz-question {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    margin: 8px 0;
+    text-align: left;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.option:hover:not(:disabled) {
+    background: var(--soft);
+}
+
+.option.correct {
+    background: #dcfce7;
+    color: #14532d;
+    border-color: #22c55e;
+}
+
+.option.wrong {
+    background: #fee2e2;
+    color: #7f1d1d;
+    border-color: #ef4444;
+}
+
+.quiz-feedback {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+
+.quiz-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.quiz-btn:hover {
+    background: var(--primary-dark);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--header);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 10px;
+}
+
+footer p {
+    color: #cfc4e9;
+    font-size: 13px;
+    margin: 7px 0;
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 22px 15px 30px;
+    }
+
+    main {
+        padding: 20px 12px 30px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .lesson-header {
+        padding: 14px;
+    }
+
+    .lesson-number {
+        width: 39px;
+        height: 39px;
+        font-size: 12px;
+    }
+
+    .lesson-name {
+        font-size: 14px;
+    }
+
+    .lesson-content {
+        padding: 0 15px 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+    .topic-count {
+        font-size: 11px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="header-inner">
+
+    <div class="topbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">∑</div>
+
+            <div>
+                <h2>MATH HUB</h2>
+                <p>Student Reviewer</p>
+            </div>
+
+        </div>
+
+        <button class="theme-btn" id="themeBtn">
+            ☾ Dark Mode
+        </button>
+
+    </div>
+
+    <div class="hero">
+
+        <div class="eyebrow">
+            MATHEMATICS IN THE MODERN WORLD
+        </div>
+
+        <h1>
+            Learn. Practice.<br>
+            Understand Mathematics.
+        </h1>
+
+        <p>
+            Your personal mathematics reviewer.
+            Explore mathematical language, expressions,
+            sets, Venn diagrams, and reasoning.
+        </p>
+
+        <div class="badges">
+
+            <span class="badge">📚 12 Lessons</span>
+
+            <span class="badge">✏️ Notes & Examples</span>
+
+            <span class="badge">🧠 Practice Quiz</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main>
+
+    <div class="search-box">
+
+        <span>🔎</span>
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search lessons, symbols, sets..."
+        >
+
+    </div>
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>Your Lessons</h2>
+
+            <p>
+                Based on your handwritten notes
+            </p>
+
+        </div>
+
+        <span class="topic-count" id="topicCount">
+            12 Topics
+        </span>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button class="filter-btn active" data-filter="all">
+            All Topics
+        </button>
+
+        <button class="filter-btn" data-filter="language">
+            Symbols
+        </button>
+
+        <button class="filter-btn" data-filter="expression">
+            Expressions
+        </button>
+
+        <button class="filter-btn" data-filter="sets">
+            Sets
+        </button>
+
+        <button class="filter-btn" data-filter="reasoning">
+            Reasoning
+        </button>
+
+    </div>
+
+
+    <!-- LESSON LIST -->
+
+    <div id="lessonList">
+
+
+<!-- LESSON 1 -->
+
+<section class="lesson open"
+data-category="language"
+data-search="mathematical language symbols addition subtraction multiplication division equal greater less variables square root sigma">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">01</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Mathematical Language and Symbols
+        </div>
+
+        <div class="lesson-description">
+            Common mathematical symbols
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>What is Mathematical Language?</h3>
+
+<p>
+Mathematical language is a way of expressing ideas
+using numbers, symbols, variables, and mathematical terms.
+</p>
+
+<h3>Common Mathematical Symbols</h3>
+
+<table>
+
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+
+<tr><td>+</td><td>Addition</td></tr>
+<tr><td>−</td><td>Subtraction</td></tr>
+<tr><td>× or ·</td><td>Multiplication</td></tr>
+<tr><td>÷ or /</td><td>Division</td></tr>
+<tr><td>=</td><td>Equal to</td></tr>
+<tr><td>≠</td><td>Not equal to</td></tr>
+<tr><td>></td><td>Greater than</td></tr>
+<tr><td><</td><td>Less than</td></tr>
+<tr><td>≥</td><td>Greater than or equal to</td></tr>
+<tr><td>≤</td><td>Less than or equal to</td></tr>
+<tr><td>√</td><td>Square root</td></tr>
+<tr><td>∛</td><td>Cube root</td></tr>
+<tr><td>Σ</td><td>Sigma / Summation</td></tr>
+<tr><td>x, y, z</td><td>Variables</td></tr>
+
+</table>
+
+<h3>Example</h3>
+
+<div class="formula">
+    5 + 3 = 8
+</div>
+
+<p>
+The symbol + means addition, and = means equal to.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 2 -->
+
+<section class="lesson"
+data-category="expression"
+data-search="mathematical expression addition sum difference product quotient verbal phrase">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">02</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Mathematical Expressions
+        </div>
+
+        <div class="lesson-description">
+            Verbal phrases into mathematical symbols
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Definition</h3>
+
+<p>
+A mathematical expression is a combination of numbers,
+variables, and mathematical operations.
+</p>
+
+<div class="formula">
+    x + 10
+</div>
+
+<p>
+Here, x is the variable and 10 is a constant.
+</p>
+
+<h3>Verbal Phrase to Mathematical Expression</h3>
+
+<table>
+
+<tr>
+<th>Verbal Phrase</th>
+<th>Expression</th>
+</tr>
+
+<tr>
+<td>The sum of a number and 10</td>
+<td>x + 10</td>
+</tr>
+
+<tr>
+<td>The difference of a number and 5</td>
+<td>x − 5</td>
+</tr>
+
+<tr>
+<td>The product of 10 and a number</td>
+<td>10x</td>
+</tr>
+
+<tr>
+<td>The quotient of a number and 50</td>
+<td>x / 50</td>
+</tr>
+
+<tr>
+<td>One-fifth of a number</td>
+<td>x / 5</td>
+</tr>
+
+<tr>
+<td>Three-fourths of 500</td>
+<td>(3/4)(500) = 375</td>
+</tr>
+
+<tr>
+<td>The sum of two numbers less 11</td>
+<td>x + y − 11</td>
+</tr>
+
+<tr>
+<td>Double the quantity of sales less taxes</td>
+<td>2x − y</td>
+</tr>
+
+<tr>
+<td>The difference of gross sales less taxes</td>
+<td>x − y</td>
+</tr>
+
+<tr>
+<td>A number subtracted from 8</td>
+<td>8 − x</td>
+</tr>
+
+</table>
+
+<div class="note">
+
+<strong>Remember:</strong>
+
+"A number subtracted from 8" is 8 − x,
+not x − 8.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 3 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="sets number sets natural counting whole integers rational irrational real numbers elements">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">03</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Sets and Number Sets
+        </div>
+
+        <div class="lesson-description">
+            Types of numbers and elements
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>What is a Set?</h3>
+
+<p>
+A set is a well-defined collection of distinct objects.
+The objects in a set are called elements or members.
+</p>
+
+<div class="formula">
+    A = {A, E, L, X}
+</div>
+
+<p>
+The elements of set A are A, E, L, and X.
+</p>
+
+<h3>Fundamental Number Sets</h3>
+
+<table>
+
+<tr>
+<th>Set</th>
+<th>Definition</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>ℕ</td>
+<td>Natural / Counting Numbers</td>
+<td>{1, 2, 3, 4, ...}</td>
+</tr>
+
+<tr>
+<td>W</td>
+<td>Whole Numbers</td>
+<td>{0, 1, 2, 3, ...}</td>
+</tr>
+
+<tr>
+<td>ℤ</td>
+<td>Integers</td>
+<td>{..., −2, −1, 0, 1, 2, ...}</td>
+</tr>
+
+<tr>
+<td>ℚ</td>
+<td>Rational Numbers</td>
+<td>1/2, 0.75, 3</td>
+</tr>
+
+<tr>
+<td>𝕀</td>
+<td>Irrational Numbers</td>
+<td>√2, π</td>
+</tr>
+
+<tr>
+<td>ℝ</td>
+<td>Real Numbers</td>
+<td>Rational and irrational numbers</td>
+</tr>
+
+</table>
+
+<h3>Examples of Sets</h3>
+
+<p>
+Set of counting numbers greater than 5 but less than 10:
+</p>
+
+<div class="formula">
+    N = {6, 7, 8, 9}
+</div>
+
+<p>
+Set of whole numbers greater than 0 but less than or equal to 6:
+</p>
+
+<div class="formula">
+    W = {1, 2, 3, 4, 5, 6}
+</div>
+
+<div class="note">
+<strong>Note:</strong>
+Some textbooks include 0 in the natural numbers.
+Your notes use ℕ = {1, 2, 3, ...}.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 4 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="set builder notation natural numbers greater less equal condition roster form">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">04</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Set-Builder Notation
+        </div>
+
+        <div class="lesson-description">
+            Writing sets using conditions
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Definition</h3>
+
+<p>
+Set-builder notation describes a set by stating
+the condition that its elements must satisfy.
+</p>
+
+<div class="formula">
+    { x ∈ ℕ | 10 &lt; x &lt; 15 }
+</div>
+
+<p>
+Read as: The set of all natural numbers x such that
+x is greater than 10 but less than 15.
+</p>
+
+<h3>Example 1</h3>
+
+<p>
+Set of all natural numbers greater than 10
+but less than 15.
+</p>
+
+<div class="formula">
+    {11, 12, 13, 14}
+</div>
+
+<h3>Example 2</h3>
+
+<p>
+Set of all counting numbers greater than or equal to 5
+but less than or equal to 10.
+</p>
+
+<div class="formula">
+    { x ∈ ℕ | 5 ≤ x ≤ 10 }
+</div>
+
+<p>
+<strong>Roster form:</strong>
+{5, 6, 7, 8, 9, 10}
+</p>
+
+<div class="note">
+
+<strong>Symbols:</strong>
+
+∈ means "is an element of."
+
+The vertical bar | means "such that."
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 5 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="types of sets well defined empty finite infinite universal equal equivalent set">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">05</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Types of Sets
+        </div>
+
+        <div class="lesson-description">
+            Empty, finite, infinite, and other sets
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>1. Well-Defined Set</h3>
+
+<p>
+A set whose elements are clearly identified without doubt.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}
+</div>
+
+<h3>2. Empty Set</h3>
+
+<p>
+A set with no elements. Also called a null set.
+</p>
+
+<div class="formula">
+    A = ∅ or A = { }
+</div>
+
+<h3>3. Finite Set</h3>
+
+<p>
+A set with a limited number of elements.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4, 5}
+</div>
+
+<h3>4. Infinite Set</h3>
+
+<p>
+A set with endlessly continuing elements.
+</p>
+
+<div class="formula">
+    W = {0, 1, 2, 3, ...}
+</div>
+
+<h3>5. Universal Set</h3>
+
+<p>
+The set containing all objects or elements
+being considered in a discussion.
+</p>
+
+<div class="formula">
+    U = {1, 2, 3, 4, 5, 6, 7}
+</div>
+
+<h3>6. Equal Sets</h3>
+
+<p>
+Two sets are equal if they contain exactly
+the same elements.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}<br>
+    B = {1, 2, 3, 4}<br>
+    ∴ A = B
+</div>
+
+<h3>7. Equivalent Sets</h3>
+
+<p>
+Two sets are equivalent if they have the same
+number of elements, even if their elements are different.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}<br>
+    B = {A, B, C, D}<br>
+    ∴ A and B are equivalent
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 6 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="subset proper subset subset symbol equal set">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">06</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Subsets and Proper Subsets
+        </div>
+
+        <div class="lesson-description">
+            Comparing elements of sets
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Subset (⊆)</h3>
+
+<p>
+A set A is a subset of B if every element of A
+is also an element of B. A can be equal to B.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3}<br>
+    B = {1, 2, 3, 4, 5}<br>
+    A ⊆ B
+</div>
+
+<h3>Proper Subset (⊂)</h3>
+
+<p>
+A is a proper subset of B if all elements of A
+are in B, but A is not equal to B.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}<br>
+    B = {1, 2, 3, 4, 5, 6, 7}<br>
+    A ⊂ B
+</div>
+
+<div class="note">
+
+<strong>Difference:</strong>
+
+A subset may be equal to the other set.
+
+A proper subset must be smaller than the other set.
+
+</div>
+
+<h3>Example from your notes</h3>
+
+<p>
+A = {1, 2, 3, 4, 5}
+</p>
+
+<p>
+B = {1, 2, 3, 4, 5, 6, 7}
+</p>
+
+<div class="formula">
+    A ⊂ B
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 7 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="venn diagram sets circles intersection union">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">07</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Venn Diagram
+        </div>
+
+        <div class="lesson-description">
+            Visual representation of sets
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>What is a Venn Diagram?</h3>
+
+<p>
+A Venn diagram is a visual representation of sets
+using circles. It shows relationships between sets.
+</p>
+
+<h3>Example</h3>
+
+<p>
+A = {1, 2, 3, 4}
+</p>
+
+<p>
+B = {2, 3, 5, 6}
+</p>
+
+<div class="venn-wrapper">
+
+<svg viewBox="0 0 500 300"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect x="5" y="5" width="490" height="290"
+rx="15"
+fill="none"
+stroke="currentColor"
+stroke-opacity="0.25"
+stroke-width="2"/>
+
+<text x="25" y="32"
+font-size="18"
+font-weight="bold"
+fill="currentColor">
+U
+</text>
+
+<circle cx="190" cy="155"
+r="105"
+fill="#60a5fa"
+fill-opacity="0.35"
+stroke="#3b82f6"
+stroke-width="3"/>
+
+<circle cx="310" cy="155"
+r="105"
+fill="#f59e0b"
+fill-opacity="0.35"
+stroke="#d97706"
+stroke-width="3"/>
+
+<text x="125" y="85"
+font-size="24"
+font-weight="bold"
+fill="currentColor">
+A
+</text>
+
+<text x="355" y="85"
+font-size="24"
+font-weight="bold"
+fill="currentColor">
+B
+</text>
+
+<text x="125" y="150"
+font-size="21"
+fill="currentColor">
+1
+</text>
+
+<text x="125" y="180"
+font-size="21"
+fill="currentColor">
+4
+</text>
+
+<text x="237" y="150"
+font-size="21"
+font-weight="bold"
+fill="currentColor">
+2
+</text>
+
+<text x="237" y="180"
+font-size="21"
+font-weight="bold"
+fill="currentColor">
+3
+</text>
+
+<text x="355" y="150"
+font-size="21"
+fill="currentColor">
+5
+</text>
+
+<text x="355" y="180"
+font-size="21"
+fill="currentColor">
+6
+</text>
+
+</svg>
+
+</div>
+
+<h3>Set Operations in the Diagram</h3>
+
+<div class="formula">
+    A ∩ B = {2, 3}
+</div>
+
+<p>
+<strong>Intersection:</strong>
+The elements common to both A and B.
+</p>
+
+<div class="formula">
+    A ∪ B = {1, 2, 3, 4, 5, 6}
+</div>
+
+<p>
+<strong>Union:</strong>
+All elements in A or B or both.
+</p>
+
+<div class="note">
+
+<strong>Remember:</strong>
+
+The overlapping part is the intersection.
+
+The two circles together represent the union.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 8 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="set operations intersection union disjoint">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">08</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Set Operations
+        </div>
+
+        <div class="lesson-description">
+            Intersection, union, and disjoint sets
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>1. Set Intersection (∩)</h3>
+
+<p>
+The set of elements common to both A and B.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}<br>
+    B = {2, 3, 5, 6, 7}<br><br>
+    A ∩ B = {2, 3}
+</div>
+
+<h3>2. Set Union (∪)</h3>
+
+<p>
+The set of all elements belonging to A or B or both.
+Repeated elements are written only once.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3, 4}<br>
+    B = {3, 4, 5}<br><br>
+    A ∪ B = {1, 2, 3, 4, 5}
+</div>
+
+<h3>3. Disjoint Sets</h3>
+
+<p>
+Two sets are disjoint if they have no common elements.
+</p>
+
+<div class="formula">
+    A = {1, 2, 3}<br>
+    B = {4, 5, 6}<br><br>
+    A ∩ B = ∅
+</div>
+
+<div class="note">
+
+<strong>Remember:</strong>
+
+Intersection means common elements.
+
+Union means combine all elements without duplicates.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 9 -->
+
+<section class="lesson"
+data-category="sets"
+data-search="universal set complement elements not belong">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">09</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Universal Set and Complement
+        </div>
+
+        <div class="lesson-description">
+            Finding elements outside a set
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Universal Set (U)</h3>
+
+<p>
+The universal set contains all elements being
+considered in a problem.
+</p>
+
+<div class="formula">
+    U = {1, 2, 3, 4, 5, 6, 7}
+</div>
+
+<h3>Set Complement (A′)</h3>
+
+<p>
+The complement of A is the set of all elements
+in U that are not in A.
+</p>
+
+<div class="formula">
+    U = {1, 2, 3, 4, 5, 6, 7}<br>
+    A = {1, 2, 3, 4}<br><br>
+    A′ = {5, 6, 7}
+</div>
+
+<h3>Another Example</h3>
+
+<p>
+If U = {1, 2, 3, 4, 5} and B = {2, 3, 5},
+then:
+</p>
+
+<div class="formula">
+    B′ = {1, 4}
+</div>
+
+<div class="note">
+
+<strong>Tip:</strong>
+
+To find the complement, start with the universal
+set and remove the elements that belong to A.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 10 -->
+
+<section class="lesson"
+data-category="reasoning"
+data-search="reasoning facts information observations conclusion">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">10</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Reasoning
+        </div>
+
+        <div class="lesson-description">
+            Using facts to reach a conclusion
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>What is Reasoning?</h3>
+
+<p>
+Reasoning is the process of using facts,
+information, and observations to reach a conclusion.
+</p>
+
+<h3>Example</h3>
+
+<div class="example">
+
+<strong>Fact 1:</strong>
+All students in the class have an ID.
+
+<br><br>
+
+<strong>Fact 2:</strong>
+Juan is a student in the class.
+
+<br><br>
+
+<strong>Conclusion:</strong>
+Juan has an ID.
+
+</div>
+
+<h3>Important Parts</h3>
+
+<ul>
+
+<li>Facts or information</li>
+
+<li>Observations</li>
+
+<li>Logical thinking</li>
+
+<li>Conclusion</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 11 -->
+
+<section class="lesson"
+data-category="reasoning"
+data-search="deductive reasoning general specific conclusion examples">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">11</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Deductive Reasoning
+        </div>
+
+        <div class="lesson-description">
+            General to specific
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Definition</h3>
+
+<p>
+Deductive reasoning starts with a general rule
+and applies it to a specific situation.
+</p>
+
+<h3>Example 1</h3>
+
+<div class="example">
+
+<strong>General statement:</strong>
+All humans are mortal.
+
+<br><br>
+
+<strong>Specific statement:</strong>
+Socrates is a human.
+
+<br><br>
+
+<strong>Conclusion:</strong>
+Therefore, Socrates is mortal.
+
+</div>
+
+<h3>Example 2: Mathematics</h3>
+
+<div class="example">
+
+1. All even numbers are divisible by 2.
+
+<br>
+
+2. 8 is an even number.
+
+<br>
+
+3. Therefore, 8 is divisible by 2.
+
+</div>
+
+<div class="formula">
+    General → Specific
+</div>
+
+<div class="note">
+
+<strong>Key idea:</strong>
+
+Deductive reasoning applies a general rule
+to a specific case.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 12 -->
+
+<section class="lesson"
+data-category="reasoning"
+data-search="inductive reasoning specific general observations examples probable conclusion">
+
+<button class="lesson-header">
+
+    <div class="lesson-number">12</div>
+
+    <div class="lesson-info">
+
+        <div class="lesson-name">
+            Inductive Reasoning
+        </div>
+
+        <div class="lesson-description">
+            Specific to general
+        </div>
+
+    </div>
+
+    <span class="arrow">⌄</span>
+
+</button>
+
+
+<div class="lesson-content">
+
+<h3>Definition</h3>
+
+<p>
+Inductive reasoning starts with specific observations
+and develops a general conclusion.
+</p>
+
+<h3>Example 1</h3>
+
+<div class="example">
+
+1. The sun rose in the east yesterday.
+
+<br>
+
+2. The sun rose in the east today.
+
+<br>
+
+3. Therefore, the sun will probably rise
+in the east tomorrow.
+
+</div>
+
+<h3>Example 2: Mathematics</h3>
+
+<div class="example">
+
+1. 2 + 2 = 4
+
+<br>
+
+2. 4 + 4 = 8
+
+<br>
+
+3. 6 + 6 = 12
+
+<br>
+
+4. Therefore, adding an even number to itself
+produces an even number.
+
+</div>
+
+<div class="formula">
+    Specific → General
+</div>
+
+<div class="note">
+
+<strong>Key idea:</strong>
+
+Inductive reasoning gives a probable conclusion,
+not a guaranteed one.
+
+</div>
+
+</div>
+
+</section>
+
+
+    </div>
+
+
+    <div class="no-results hidden" id="noResults">
+
+        No lessons found. Try another keyword.
+
+    </div>
+
+
+<!-- QUIZ -->
+
+<section class="quiz-box">
+
+    <h2>🧠 Practice Quiz</h2>
+
+    <p class="quiz-subtitle">
+        Test your understanding of the lessons.
+    </p>
+
+    <div class="progress-track">
+
+        <div class="progress-bar" id="progressBar"></div>
+
+    </div>
+
+    <div id="quizArea">
+
+        <div class="quiz-question" id="question"></div>
+
+        <div id="options"></div>
+
+        <p class="quiz-feedback" id="feedback"></p>
+
+        <button
+            class="quiz-btn hidden"
+            id="nextBtn">
+            Next Question →
+        </button>
+
+    </div>
+
+    <div id="quizResult" class="hidden">
+
+        <h3>🎉 Quiz Completed!</h3>
+
+        <p id="finalScore"></p>
+
+        <button class="quiz-btn" id="restartBtn">
+            Try Again
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>Mathematics in the Modern World</h3>
+
+    <p>
+        Developed by Franz Chezka Jacobe
+    </p>
+
+    <p>
+        Student Reviewer • 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+/* LESSON OPEN AND CLOSE */
+
+const lessons = document.querySelectorAll(".lesson");
+
+lessons.forEach(function(lesson) {
+
+    const header = lesson.querySelector(".lesson-header");
+
+    header.setAttribute("aria-expanded", lesson.classList.contains("open"));
+
+    header.addEventListener("click", function() {
+
+        const isOpen = lesson.classList.toggle("open");
+
+        header.setAttribute("aria-expanded", isOpen);
+
+    });
+
+});
+
+
+/* SEARCH AND FILTER */
+
+const searchInput = document.getElementById("searchInput");
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+const topicCount = document.getElementById("topicCount");
+
+const noResults = document.getElementById("noResults");
+
+let currentFilter = "all";
+
+
+function updateLessons() {
+
+    const searchText = searchInput.value.toLowerCase().trim();
+
+    let visibleCount = 0;
+
+    lessons.forEach(function(lesson) {
+
+        const category = lesson.dataset.category;
+
+        const searchData = (
+            lesson.dataset.search + " " +
+            lesson.textContent
+        ).toLowerCase();
+
+        const matchesFilter =
+            currentFilter === "all" ||
+            category === currentFilter;
+
+        const matchesSearch =
+            searchData.includes(searchText);
+
+        const show = matchesFilter && matchesSearch;
+
+        lesson.classList.toggle("hidden", !show);
+
+        if (show) {
+            visibleCount++;
+        }
+
+    });
+
+    topicCount.textContent =
+        visibleCount + " Topic" +
+        (visibleCount === 1 ? "" : "s");
+
+    noResults.classList.toggle(
+        "hidden",
+        visibleCount !== 0
+    );
+
+}
+
+
+searchInput.addEventListener("input", updateLessons);
+
+
+filterButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        currentFilter = button.dataset.filter;
+
+        filterButtons.forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        updateLessons();
+
+    });
+
+});
+
+
+/* DARK MODE */
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", function() {
+
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+
+        themeBtn.textContent = "☀ Light Mode";
+
+    } else {
+
+        themeBtn.textContent = "☾ Dark Mode";
+
+    }
+
+});
+
+
+/* QUIZ */
+
+const questions = [
+
+    {
+        question:
+        "What is the intersection of A = {1, 2, 3} and B = {2, 3, 4}?",
+
+        options: [
+            "{1, 2, 3, 4}",
+            "{2, 3}",
+            "{1, 4}",
+            "∅"
+        ],
+
+        answer: 1,
+
+        explanation:
+        "Intersection contains the common elements: 2 and 3."
+    },
+
+    {
+        question:
+        "What is the expression for 'the product of 10 and a number'?",
+
+        options: [
+            "x + 10",
+            "x − 10",
+            "10x",
+            "x / 10"
+        ],
+
+        answer: 2,
+
+        explanation:
+        "Product means multiplication, so 10 × x = 10x."
+    },
+
+    {
+        question:
+        "Which set contains all natural numbers greater than 5 but less than 10?",
+
+        options: [
+            "{5, 6, 7, 8, 9, 10}",
+            "{6, 7, 8, 9}",
+            "{1, 2, 3, 4}",
+            "{5, 10}"
+        ],
+
+        answer: 1,
+
+        explanation:
+        "Greater than 5 and less than 10 gives 6, 7, 8, and 9."
+    },
+
+    {
+        question:
+        "If U = {1, 2, 3, 4, 5} and A = {1, 2}, what is A′?",
+
+        options: [
+            "{1, 2}",
+            "{3, 4, 5}",
+            "∅",
+            "{1, 2, 3, 4, 5}"
+        ],
+
+        answer: 1,
+
+        explanation:
+        "The complement contains elements in U that are not in A."
+    },
+
+    {
+        question:
+        "Which symbol means 'less than or equal to'?",
+
+        options: [
+            "≥",
+            ">",
+            "≤",
+            "≠"
+        ],
+
+        answer: 2,
+
+        explanation:
+        "≤ means less than or equal to."
+    },
+
+    {
+        question:
+        "Deductive reasoning moves from:",
+
+        options: [
+            "Specific to general",
+            "General to specific",
+            "Unknown to unknown",
+            "Opinion to fact"
+        ],
+
+        answer: 1,
+
+        explanation:
+        "Deductive reasoning moves from a general rule to a specific conclusion."
+    },
+
+    {
+        question:
+        "Inductive reasoning usually gives a conclusion that is:",
+
+        options: [
+            "Always guaranteed",
+            "Impossible",
+            "Probable",
+            "Always false"
+        ],
+
+        answer: 2,
+
+        explanation:
+        "Inductive reasoning uses observations to form a probable conclusion."
+    },
+
+    {
+        question:
+        "What is the union of A = {1, 2} and B = {2, 3}?",
+
+        options: [
+            "{2}",
+            "{1, 2, 3}",
+            "{1, 3}",
+            "∅"
+        ],
+
+        answer: 1,
+
+        explanation:
+        "Union combines all elements without repeating 2."
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+const questionElement =
+    document.getElementById("question");
+
+const optionsElement =
+    document.getElementById("options");
+
+const feedbackElement =
+    document.getElementById("feedback");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const quizArea =
+    document.getElementById("quizArea");
+
+const quizResult =
+    document.getElementById("quizResult");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const restartBtn =
+    document.getElementById("restartBtn");
+
+
+function showQuestion() {
+
+    const item = questions[currentQuestion];
+
+    answered = false;
+
+    questionElement.textContent = item.question;
+
+    optionsElement.innerHTML = "";
+
+    feedbackElement.textContent = "";
+
+    nextBtn.classList.add("hidden");
+
+    progressBar.style.width =
+        (currentQuestion / questions.length * 100) + "%";
+
+
+    item.options.forEach(function(option, index) {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) +
+            ". " + option;
+
+        button.addEventListener("click", function() {
+
+            checkAnswer(index);
+
+        });
+
+        optionsElement.appendChild(button);
+
+    });
+
+}
+
+
+function checkAnswer(selectedIndex) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const item = questions[currentQuestion];
+
+    const optionButtons =
+        optionsElement.querySelectorAll(".option");
+
+
+    if (selectedIndex === item.answer) {
+
+        score++;
+
+    }
+
+
+    optionButtons.forEach(function(button, index) {
+
+        button.disabled = true;
+
+        if (index === item.answer) {
+
+            button.classList.add("correct");
+
+        }
+
+        if (
+            index === selectedIndex &&
+            selectedIndex !== item.answer
+        ) {
+
+            button.classList.add("wrong");
+
+        }
+
+    });
+
+
+    if (selectedIndex === item.answer) {
+
+        feedbackElement.textContent =
+            "✓ Correct! " + item.explanation;
+
+    } else {
+
+        feedbackElement.textContent =
+            "✗ Not quite. " + item.explanation;
+
+    }
+
+
+    progressBar.style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+    nextBtn.classList.remove("hidden");
+
+}
+
+
+nextBtn.addEventListener("click", function() {
+
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+
+        quizArea.classList.add("hidden");
+
+        quizResult.classList.remove("hidden");
+
+        finalScore.textContent =
+            "You scored " + score +
+            " out of " + questions.length + "!";
+
+    } else {
+
+        showQuestion();
+
+    }
+
+});
+
+
+restartBtn.addEventListener("click", function() {
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    quizResult.classList.add("hidden");
+
+    quizArea.classList.remove("hidden");
+
+    showQuestion();
+
+});
+
+
+/* INITIALIZE */
+
+updateLessons();
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
